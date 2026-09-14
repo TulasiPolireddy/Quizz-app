@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportIQ</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="background-decorations">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <main class="app-container">
+        <!-- 1. LOGIN / WELCOME VIEW -->
+        <section id="login-view" class="view active">
+            <div class="card glass">
+                <div class="badge">🏆 SPORTS ARENA</div>
+                <h1>Welcome, Athlete!</h1>
+                <p>Test your knowledge in Cricket, Football, F1, Tennis, and Badminton.</p>
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="username">Enter Player Name</label>
+                        <input type="text" id="username" placeholder="e.g. Cristiano, Virat..." required autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enter Arena &rarr;</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 2. DASHBOARD VIEW -->
+        <section id="dashboard-view" class="view">
+            <div class="card glass">
+                <header class="dashboard-header">
+                    <div>
+                        <h2>Hello, <span id="player-display-name">Player</span>! 👋</h2>
+                        <p>Pick a category to begin your challenge</p>
+                    </div>
+                    <button id="logout-btn" class="btn btn-secondary btn-sm">Switch User</button>
+                </header>
+
+                <div class="category-selection">
+                    <label>Select Category:</label>
+                    <div class="category-grid">
+                        <button class="cat-btn active" data-category="all">🌐 All Sports (Mixed)</button>
+                        <button class="cat-btn" data-category="Cricket">🏏 Cricket</button>
+                        <button class="cat-btn" data-category="Football">⚽ Football</button>
+                        <button class="cat-btn" data-category="F1">🏎️ Formula 1</button>
+                        <button class="cat-btn" data-category="Tennis">🎾 Tennis</button>
+                        <button class="cat-btn" data-category="Badminton">🏸 Badminton</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="start-quiz-btn" class="btn btn-primary">Start Quiz 🚀</button>
+                    <button id="view-history-btn" class="btn btn-outline">📜 View History</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. QUIZ VIEW -->
+        <section id="quiz-view" class="view">
+            <div class="card glass">
+                <div class="quiz-header">
+                    <span id="quiz-category-tag" class="badge">Category</span>
+                    <span id="quiz-progress-text" class="progress-text">Question 1/10</span>
+                </div>
+                
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+
+                <div class="quiz-body">
+                    <h3 id="question-text">Question goes here?</h3>
+                    <div id="options-container" class="options-grid">
+                        <!-- Options injected dynamically -->
+                    </div>
+                </div>
+
+                <div class="quiz-footer">
+                    <button id="next-btn" class="btn btn-primary" disabled>Next Question &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. RESULT VIEW -->
+        <section id="result-view" class="view">
+            <div class="card glass text-center">
+                <div id="result-badge" class="result-icon">🎉</div>
+                <h2>Quiz Completed!</h2>
+                <p id="result-message">Great effort on the pitch!</p>
+
+                <div class="score-card">
+                    <div class="score-item">
+                        <span class="label">Score</span>
+                        <span id="final-score" class="value">0/0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="label">Accuracy</span>
+                        <span id="final-percentage" class="value">0%</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="retake-btn" class="btn btn-primary">🔁 Retake Quiz</button>
+                    <button id="dashboard-btn" class="btn btn-secondary">🏠 Back to Dashboard</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. HISTORY MODAL / VIEW -->
+        <section id="history-view" class="view">
+            <div class="card glass">
+                <div class="history-header">
+                    <h2>Attempt History</h2>
+                    <button id="close-history-btn" class="btn btn-secondary btn-sm">&times; Close</button>
+                </div>
+                
+                <div class="history-list-wrapper">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Category</th>
+                                <th>Score</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                    <div id="no-history-msg" class="empty-state">No attempts yet. Play a game to record your score!</div>
+                </div>
+
+                <div class="history-footer">
+                    <button id="clear-history-btn" class="btn btn-outline btn-danger btn-sm">Clear History</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
