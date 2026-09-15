@@ -1,83 +1,95 @@
 /* ==========================================================
-   SPORTS QUIZ QUESTION BANK (Cricket, Football, F1, Tennis, Badminton)
+   SPORTS QUESTION BANK WITH DIFFICULTY LEVELS
    ========================================================== */
 const questionsBank = [
     // CRICKET
     {
         category: "Cricket",
-        question: "Which cricketer has scored 100 international centuries?",
+        difficulty: "Easy",
+        question: "Which cricketer holds the record for 100 international centuries?",
         options: ["Ricky Ponting", "Sachin Tendulkar", "Virat Kohli", "Brian Lara"],
         answer: 1
     },
     {
         category: "Cricket",
-        question: "Who won the first-ever ICC Men's T20 World Cup in 2007?",
+        difficulty: "Medium",
+        question: "Who won the inaugural ICC Men's T20 World Cup in 2007?",
         options: ["Pakistan", "Australia", "India", "West Indies"],
         answer: 2
     },
     {
         category: "Cricket",
-        question: "How many fielders are allowed outside the 30-yard circle in standard T20 powerplays?",
-        options: ["2", "3", "4", "5"],
-        answer: 0
+        difficulty: "Hard",
+        question: "Who is the only bowler to take 800 wickets in Test Match cricket?",
+        options: ["Shane Warne", "James Anderson", "Anil Kumble", "Muttiah Muralitharan"],
+        answer: 3
     },
 
     // FOOTBALL
     {
         category: "Football",
-        question: "Which country has won the most FIFA World Cup titles?",
+        difficulty: "Easy",
+        question: "Which nation has won the highest number of FIFA Men's World Cup titles (5)?",
         options: ["Germany", "Italy", "Argentina", "Brazil"],
         answer: 3
     },
     {
         category: "Football",
-        question: "Who won the FIFA World Cup Golden Ball in 2022?",
-        options: ["Kylian Mbappé", "Lionel Messi", "Luka Modrić", "Cristiano Ronaldo"],
-        answer: 1
+        difficulty: "Medium",
+        question: "Which club won 3 consecutive UEFA Champions League titles from 2016 to 2018?",
+        options: ["FC Barcelona", "Bayern Munich", "Real Madrid", "Liverpool"],
+        answer: 2
     },
     {
         category: "Football",
-        question: "Which club has won the most UEFA Champions League titles?",
-        options: ["AC Milan", "Bayern Munich", "Real Madrid", "Liverpool"],
-        answer: 2
+        difficulty: "Hard",
+        question: "Which player scored the controversial 'Hand of God' goal in the 1986 World Cup?",
+        options: ["Diego Maradona", "Pelé", "Zico", "Michel Platini"],
+        answer: 0
     },
 
     // FORMULA 1
     {
         category: "F1",
-        question: "Who shares the record for the most F1 World Championships (7 titles) with Michael Schumacher?",
-        options: ["Ayrton Senna", "Lewis Hamilton", "Sebastian Vettel", "Max Verstappen"],
+        difficulty: "Easy",
+        question: "What does the black and white chequered flag signify in Formula 1?",
+        options: ["Race Finish", "Safety Car Deployed", "Driver Penalty", "Oil on Track"],
+        answer: 0
+    },
+    {
+        category: "F1",
+        difficulty: "Medium",
+        question: "Who shares the record for most World Championships (7) with Michael Schumacher?",
+        options: ["Ayrton Senna", "Lewis Hamilton", "Max Verstappen", "Sebastian Vettel"],
         answer: 1
     },
     {
         category: "F1",
-        question: "What does the black and white checkered flag signal in Formula 1?",
-        options: ["Safety Car deployed", "Session / Race finish", "Driver disqualified", "Debris on track"],
-        answer: 1
-    },
-    {
-        category: "F1",
-        question: "Which track is famously known as the 'Temple of Speed'?",
-        options: ["Silverstone", "Monza", "Spa-Francorchamps", "Suzuka"],
-        answer: 1
+        difficulty: "Hard",
+        question: "Which iconic racetrack features the 'Eau Rouge' and 'Raidillon' corners?",
+        options: ["Monza", "Silverstone", "Spa-Francorchamps", "Suzuka"],
+        answer: 2
     },
 
     // TENNIS
     {
         category: "Tennis",
-        question: "Which Grand Slam tennis tournament is played on traditional grass courts?",
-        options: ["Australian Open", "Roland Garros (French Open)", "Wimbledon", "US Open"],
+        difficulty: "Easy",
+        question: "Which Grand Slam tournament is played exclusively on natural grass courts?",
+        options: ["Australian Open", "Roland Garros", "Wimbledon", "US Open"],
         answer: 2
     },
     {
         category: "Tennis",
-        question: "Who is popularly known as the 'King of Clay' in Tennis?",
-        options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Carlos Alcaraz"],
+        difficulty: "Medium",
+        question: "Who is widely nicknamed the 'King of Clay' due to his French Open dominance?",
+        options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Björn Borg"],
         answer: 1
     },
     {
         category: "Tennis",
-        question: "What score is represented by the term 'Love' in tennis?",
+        difficulty: "Hard",
+        question: "In tennis scoring terminology, what number does 'Love' signify?",
         options: ["0", "15", "40", "Deuce"],
         answer: 0
     },
@@ -85,40 +97,49 @@ const questionsBank = [
     // BADMINTON
     {
         category: "Badminton",
-        question: "How many feathers are traditionally used to make an authentic feather shuttlecock?",
+        difficulty: "Easy",
+        question: "How many points must a player score to win a standard set in modern Badminton?",
+        options: ["11", "15", "21", "25"],
+        answer: 2
+    },
+    {
+        category: "Badminton",
+        difficulty: "Medium",
+        question: "How many goose feathers are officially used to make a tournament shuttlecock?",
         options: ["12", "14", "16", "18"],
         answer: 2
     },
     {
         category: "Badminton",
-        question: "Which nation has won the most Thomas Cup (Men's Team) titles?",
-        options: ["China", "Indonesia", "Malaysia", "Denmark"],
-        answer: 1
-    },
-    {
-        category: "Badminton",
-        question: "A standard game in a Badminton match is played up to how many points?",
-        options: ["15", "21", "25", "30"],
+        difficulty: "Hard",
+        question: "Which nation holds the record for winning the most Thomas Cup (Men's Team) titles?",
+        options: ["China", "Indonesia", "Malaysia", "Japan"],
         answer: 1
     }
 ];
 
 /* ==========================================================
-   APPLICATION STATE & DOM REFERENCES
+   APP STATE
    ========================================================== */
 let currentUser = localStorage.getItem("sportsQuiz_user") || "";
 let selectedCategory = "all";
+let selectedDifficulty = "all";
+let timePerQuestion = 15;
+
 let currentQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
-let selectedOptionIndex = null;
+let totalPointsEarned = 0;
+let timerInterval = null;
+let timeLeft = 0;
+let userAnswersLog = []; // Stores detailed review data
 
 // Views
 const loginView = document.getElementById("login-view");
 const dashboardView = document.getElementById("dashboard-view");
 const quizView = document.getElementById("quiz-view");
 const resultView = document.getElementById("result-view");
-const historyView = document.getElementById("history-view");
+const statsView = document.getElementById("stats-view");
 
 // Elements
 const loginForm = document.getElementById("login-form");
@@ -126,13 +147,17 @@ const usernameInput = document.getElementById("username");
 const playerDisplayName = document.getElementById("player-display-name");
 const logoutBtn = document.getElementById("logout-btn");
 const startQuizBtn = document.getElementById("start-quiz-btn");
-const viewHistoryBtn = document.getElementById("view-history-btn");
 const categoryButtons = document.querySelectorAll(".cat-btn");
+const diffButtons = document.querySelectorAll(".diff-btn");
 
 // Quiz Elements
 const quizCategoryTag = document.getElementById("quiz-category-tag");
-const quizProgressText = document.getElementById("quiz-progress-text");
+const quizDifficultyTag = document.getElementById("quiz-difficulty-tag");
+const timerDisplay = document.getElementById("timer-display");
+const timerPill = document.getElementById("timer-pill");
 const progressBar = document.getElementById("progress-bar");
+const quizProgressText = document.getElementById("quiz-progress-text");
+const quizScoreIndicator = document.getElementById("quiz-score-indicator");
 const questionText = document.getElementById("question-text");
 const optionsContainer = document.getElementById("options-container");
 const nextBtn = document.getElementById("next-btn");
@@ -142,29 +167,38 @@ const resultBadge = document.getElementById("result-badge");
 const resultMessage = document.getElementById("result-message");
 const finalScore = document.getElementById("final-score");
 const finalPercentage = document.getElementById("final-percentage");
+const finalPoints = document.getElementById("final-points");
+const reviewList = document.getElementById("review-list");
 const retakeBtn = document.getElementById("retake-btn");
 const dashboardBtn = document.getElementById("dashboard-btn");
 
-// History Elements
-const historyTableBody = document.getElementById("history-table-body");
+// Tabs & Modals
+const viewLeaderboardBtn = document.getElementById("view-leaderboard-btn");
+const viewHistoryBtn = document.getElementById("view-history-btn");
+const resLeaderboardBtn = document.getElementById("res-leaderboard-btn");
+const closeStatsBtn = document.getElementById("close-stats-btn");
+const tabLeaderboardBtn = document.getElementById("tab-leaderboard-btn");
+const tabHistoryBtn = document.getElementById("tab-history-btn");
+const leaderboardTab = document.getElementById("leaderboard-tab");
+const historyTab = document.getElementById("history-tab");
+const leaderboardBody = document.getElementById("leaderboard-body");
+const historyBody = document.getElementById("history-body");
+const noLeaderboardMsg = document.getElementById("no-leaderboard-msg");
 const noHistoryMsg = document.getElementById("no-history-msg");
-const closeHistoryBtn = document.getElementById("close-history-btn");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 /* ==========================================================
-   NAVIGATION & VIEW SWITCHING
+   NAVIGATION
    ========================================================== */
 function switchView(targetView) {
-    [loginView, dashboardView, quizView, resultView, historyView].forEach(view => {
-        view.classList.remove("active");
-    });
+    [loginView, dashboardView, quizView, resultView, statsView].forEach(v => v.classList.remove("active"));
     targetView.classList.add("active");
 }
 
 /* ==========================================================
-   AUTHENTICATION / USER HANDLING
+   USER AUTHENTICATION
    ========================================================== */
-function checkExistingUser() {
+function checkUser() {
     if (currentUser) {
         playerDisplayName.textContent = currentUser;
         switchView(dashboardView);
@@ -192,7 +226,7 @@ logoutBtn.addEventListener("click", () => {
 });
 
 /* ==========================================================
-   CATEGORY SELECTION & QUIZ SETUP
+   SETTINGS SELECTION (CATEGORY & DIFFICULTY)
    ========================================================== */
 categoryButtons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -202,74 +236,147 @@ categoryButtons.forEach(btn => {
     });
 });
 
+diffButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        diffButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedDifficulty = btn.dataset.diff;
+        timePerQuestion = parseInt(btn.dataset.time);
+    });
+});
+
+/* ==========================================================
+   TIMED QUIZ LOGIC
+   ========================================================== */
 startQuizBtn.addEventListener("click", startQuiz);
+retakeBtn.addEventListener("click", startQuiz);
 
 function startQuiz() {
-    // Filter questions by category
-    if (selectedCategory === "all") {
+    // Filter questions
+    currentQuestions = questionsBank.filter(q => {
+        const catMatch = (selectedCategory === "all") || (q.category === selectedCategory);
+        const diffMatch = (selectedDifficulty === "all") || (q.difficulty === selectedDifficulty);
+        return catMatch && diffMatch;
+    });
+
+    if (currentQuestions.length === 0) {
+        alert("No questions found for this specific combination! Starting with all questions.");
         currentQuestions = [...questionsBank];
-    } else {
-        currentQuestions = questionsBank.filter(q => q.category === selectedCategory);
     }
 
-    // Shuffle questions
+    // Shuffle
     currentQuestions.sort(() => Math.random() - 0.5);
 
     currentQuestionIndex = 0;
     userScore = 0;
-    selectedOptionIndex = null;
+    totalPointsEarned = 0;
+    userAnswersLog = [];
 
     switchView(quizView);
     loadQuestion();
 }
 
 function loadQuestion() {
-    const currentQ = currentQuestions[currentQuestionIndex];
-    selectedOptionIndex = null;
+    clearInterval(timerInterval);
+    const q = currentQuestions[currentQuestionIndex];
     nextBtn.disabled = true;
+    timerPill.classList.remove("urgent");
 
-    // Update Progress
-    quizCategoryTag.textContent = currentQ.category;
-    quizProgressText.textContent = `Question ${currentQuestionIndex + 1}/${currentQuestions.length}`;
-    const progressPercent = ((currentQuestionIndex) / currentQuestions.length) * 100;
-    progressBar.style.width = `${progressPercent}%`;
+    // UI Updates
+    quizCategoryTag.textContent = q.category;
+    quizDifficultyTag.textContent = q.difficulty;
+    quizProgressText.textContent = `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
+    quizScoreIndicator.textContent = `Points: ${totalPointsEarned}`;
+    progressBar.style.width = `${((currentQuestionIndex) / currentQuestions.length) * 100}%`;
+    questionText.textContent = q.question;
 
-    // Render Question and Options
-    questionText.textContent = currentQ.question;
+    // Render Options
     optionsContainer.innerHTML = "";
-
-    currentQ.options.forEach((opt, index) => {
+    q.options.forEach((opt, idx) => {
         const btn = document.createElement("button");
         btn.classList.add("option-btn");
         btn.textContent = opt;
-        btn.addEventListener("click", () => selectOption(index, btn));
+        btn.addEventListener("click", () => handleAnswer(idx, btn));
         optionsContainer.appendChild(btn);
     });
 
-    if (currentQuestionIndex === currentQuestions.length - 1) {
-        nextBtn.textContent = "Finish Quiz 🏁";
-    } else {
-        nextBtn.textContent = "Next Question →";
-    }
+    nextBtn.textContent = (currentQuestionIndex === currentQuestions.length - 1) ? "Finish Match 🏁" : "Next Question →";
+
+    // Start Timer
+    startTimer();
 }
 
-function selectOption(index, button) {
-    if (selectedOptionIndex !== null) return; // Prevent changing answer after selection
+function startTimer() {
+    timeLeft = timePerQuestion;
+    timerDisplay.textContent = timeLeft;
 
-    selectedOptionIndex = index;
-    const currentQ = currentQuestions[currentQuestionIndex];
-    const allOptionButtons = optionsContainer.querySelectorAll(".option-btn");
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
 
-    allOptionButtons.forEach(btn => btn.classList.add("disabled"));
+        if (timeLeft <= 4) {
+            timerPill.classList.add("urgent");
+        }
 
-    if (index === currentQ.answer) {
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            handleTimeOut();
+        }
+    }, 1000);
+}
+
+function handleTimeOut() {
+    const q = currentQuestions[currentQuestionIndex];
+    const allBtns = optionsContainer.querySelectorAll(".option-btn");
+
+    allBtns.forEach(btn => btn.classList.add("disabled"));
+    allBtns[q.answer].classList.add("correct");
+
+    // Log timeout answer as wrong
+    userAnswersLog.push({
+        question: q.question,
+        category: q.category,
+        userAnswer: "⏰ Time Expired",
+        correctAnswer: q.options[q.answer],
+        isCorrect: false
+    });
+
+    nextBtn.disabled = false;
+}
+
+function handleAnswer(selectedIndex, button) {
+    clearInterval(timerInterval);
+    const q = currentQuestions[currentQuestionIndex];
+    const allBtns = optionsContainer.querySelectorAll(".option-btn");
+
+    allBtns.forEach(btn => btn.classList.add("disabled"));
+
+    const isCorrect = (selectedIndex === q.answer);
+
+    // Point Multiplier based on difficulty
+    let points = 10;
+    if (q.difficulty === "Medium") points = 15;
+    if (q.difficulty === "Hard") points = 20;
+
+    if (isCorrect) {
         button.classList.add("correct");
         userScore++;
+        totalPointsEarned += points;
     } else {
         button.classList.add("wrong");
-        // Highlight correct answer
-        allOptionButtons[currentQ.answer].classList.add("correct");
+        allBtns[q.answer].classList.add("correct");
     }
+
+    quizScoreIndicator.textContent = `Points: ${totalPointsEarned}`;
+
+    // Record for Review breakdown
+    userAnswersLog.push({
+        question: q.question,
+        category: q.category,
+        userAnswer: q.options[selectedIndex],
+        correctAnswer: q.options[q.answer],
+        isCorrect: isCorrect
+    });
 
     nextBtn.disabled = false;
 }
@@ -284,77 +391,171 @@ nextBtn.addEventListener("click", () => {
 });
 
 /* ==========================================================
-   SCORE CALCULATION & RESULT SCREEN
+   RESULTS & REVIEW PRESENTATION
    ========================================================== */
 function showResults() {
+    clearInterval(timerInterval);
     progressBar.style.width = "100%";
     const total = currentQuestions.length;
     const percentage = Math.round((userScore / total) * 100);
 
     finalScore.textContent = `${userScore}/${total}`;
     finalPercentage.textContent = `${percentage}%`;
+    finalPoints.textContent = totalPointsEarned;
 
-    // Customize feedback message
     if (percentage >= 80) {
-        resultBadge.textContent = "🏆";
-        resultMessage.textContent = "Outstanding Performance! You are a true Sports MVP!";
+        resultBadge.textContent = "🥇";
+        resultMessage.textContent = "World-Class Champion! Flawless execution.";
     } else if (percentage >= 50) {
-        resultBadge.textContent = "🎖️";
-        resultMessage.textContent = "Solid Play! Good effort across the field.";
+        resultBadge.textContent = "🥈";
+        resultMessage.textContent = "Great Match! You gave a strong fight on the pitch.";
     } else {
-        resultBadge.textContent = "📋";
-        resultMessage.textContent = "Time for more training! Better luck next match.";
+        resultBadge.textContent = "🥉";
+        resultMessage.textContent = "Needs more training! Hit the practice nets and try again.";
     }
 
-    saveQuizAttempt(selectedCategory, userScore, total, percentage);
+    // Build Detailed Review Breakdown
+    renderAnswerReview();
+
+    // Save records
+    saveHistory(selectedCategory, selectedDifficulty, userScore, total, percentage, totalPointsEarned);
+    saveToLeaderboard(currentUser, selectedCategory, selectedDifficulty, userScore, total, totalPointsEarned);
+
     switchView(resultView);
 }
 
-retakeBtn.addEventListener("click", startQuiz);
+function renderAnswerReview() {
+    reviewList.innerHTML = "";
+    userAnswersLog.forEach((log, idx) => {
+        const item = document.createElement("div");
+        item.classList.add("review-item", log.isCorrect ? "is-correct" : "is-wrong");
+
+        item.innerHTML = `
+            <div class="review-q-title">${idx + 1}. ${log.question}</div>
+            <div class="review-ans-row">
+                <span class="ans-text-user ${log.isCorrect ? 'correct-match' : ''}">
+                    <strong>Your Answer:</strong> ${log.userAnswer} ${log.isCorrect ? '✓' : '✗'}
+                </span>
+                ${!log.isCorrect ? `<span class="ans-text-correct"><strong>Correct Answer:</strong> ${log.correctAnswer}</span>` : ''}
+            </div>
+        `;
+        reviewList.appendChild(item);
+    });
+}
+
 dashboardBtn.addEventListener("click", () => switchView(dashboardView));
 
 /* ==========================================================
-   ATTEMPT HISTORY (LOCAL STORAGE)
+   PERSISTENCE: LEADERBOARD & USER HISTORY
    ========================================================== */
-function saveQuizAttempt(category, score, total, percentage) {
-    const attempts = JSON.parse(localStorage.getItem(`sportsQuiz_history_${currentUser}`)) || [];
-    const attempt = {
-        date: new Date().toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }),
-        category: category === "all" ? "All Sports" : category,
-        score: `${score}/${total}`,
-        percentage: `${percentage}%`
-    };
-    attempts.unshift(attempt); // newest first
-    localStorage.setItem(`sportsQuiz_history_${currentUser}`, JSON.stringify(attempts));
+function saveHistory(cat, diff, score, total, percentage, points) {
+    const key = `sportsQuiz_history_${currentUser}`;
+    const history = JSON.parse(localStorage.getItem(key)) || [];
+    history.unshift({
+        date: new Date().toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        category: cat === "all" ? "All Sports" : cat,
+        difficulty: diff === "all" ? "Mixed" : diff,
+        accuracy: `${score}/${total} (${percentage}%)`,
+        points: points
+    });
+    localStorage.setItem(key, JSON.stringify(history));
 }
 
-function renderHistory() {
-    const attempts = JSON.parse(localStorage.getItem(`sportsQuiz_history_${currentUser}`)) || [];
-    historyTableBody.innerHTML = "";
+function saveToLeaderboard(user, cat, diff, score, total, points) {
+    const key = "sportsQuiz_global_leaderboard";
+    const leaderboard = JSON.parse(localStorage.getItem(key)) || [];
+    
+    leaderboard.push({
+        user: user,
+        category: cat === "all" ? "All Sports" : cat,
+        difficulty: diff === "all" ? "Mixed" : diff,
+        score: `${score}/${total}`,
+        points: points,
+        timestamp: Date.now()
+    });
 
-    if (attempts.length === 0) {
-        noHistoryMsg.style.display = "block";
+    // Sort leaderboard by Points (Descending)
+    leaderboard.sort((a, b) => b.points - a.points);
+    localStorage.setItem(key, JSON.stringify(leaderboard.slice(0, 30))); // Top 30
+}
+
+function renderLeaderboard() {
+    const leaderboard = JSON.parse(localStorage.getItem("sportsQuiz_global_leaderboard")) || [];
+    leaderboardBody.innerHTML = "";
+
+    if (leaderboard.length === 0) {
+        noLeaderboardMsg.style.display = "block";
     } else {
-        noHistoryMsg.style.display = "none";
-        attempts.forEach(item => {
+        noLeaderboardMsg.style.display = "none";
+        leaderboard.forEach((entry, idx) => {
+            let medal = `#${idx + 1}`;
+            if (idx === 0) medal = "🥇 1st";
+            if (idx === 1) medal = "🥈 2nd";
+            if (idx === 2) medal = "🥉 3rd";
+
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td>${item.date}</td>
-                <td><span class="badge" style="margin:0">${item.category}</span></td>
-                <td><strong>${item.score}</strong></td>
-                <td>${item.percentage}</td>
+                <td><span class="rank-badge">${medal}</span></td>
+                <td><strong>${entry.user}</strong></td>
+                <td>${entry.category}</td>
+                <td><span class="badge" style="margin:0">${entry.difficulty}</span></td>
+                <td>${entry.score}</td>
+                <td style="color:var(--primary); font-weight:700;">${entry.points}</td>
             `;
-            historyTableBody.appendChild(tr);
+            leaderboardBody.appendChild(tr);
         });
     }
 }
 
-viewHistoryBtn.addEventListener("click", () => {
-    renderHistory();
-    switchView(historyView);
-});
+function renderHistory() {
+    const key = `sportsQuiz_history_${currentUser}`;
+    const history = JSON.parse(localStorage.getItem(key)) || [];
+    historyBody.innerHTML = "";
 
-closeHistoryBtn.addEventListener("click", () => switchView(dashboardView));
+    if (history.length === 0) {
+        noHistoryMsg.style.display = "block";
+    } else {
+        noHistoryMsg.style.display = "none";
+        history.forEach(entry => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${entry.date}</td>
+                <td>${entry.category}</td>
+                <td><span class="badge" style="margin:0">${entry.difficulty}</span></td>
+                <td>${entry.accuracy}</td>
+                <td style="color:var(--primary); font-weight:700;">${entry.points}</td>
+            `;
+            historyBody.appendChild(tr);
+        });
+    }
+}
+
+/* Tab Event Listeners */
+function openStats(tab) {
+    if (tab === "leaderboard") {
+        tabLeaderboardBtn.classList.add("active");
+        tabHistoryBtn.classList.remove("active");
+        leaderboardTab.classList.add("active");
+        historyTab.classList.remove("active");
+        renderLeaderboard();
+    } else {
+        tabHistoryBtn.classList.add("active");
+        tabLeaderboardBtn.classList.remove("active");
+        historyTab.classList.add("active");
+        leaderboardTab.classList.remove("active");
+        renderHistory();
+    }
+    switchView(statsView);
+}
+
+viewLeaderboardBtn.addEventListener("click", () => openStats("leaderboard"));
+resLeaderboardBtn.addEventListener("click", () => openStats("leaderboard"));
+viewHistoryBtn.addEventListener("click", () => openStats("history"));
+
+tabLeaderboardBtn.addEventListener("click", () => openStats("leaderboard"));
+tabHistoryBtn.addEventListener("click", () => openStats("history"));
+
+closeStatsBtn.addEventListener("click", () => switchView(dashboardView));
 
 clearHistoryBtn.addEventListener("click", () => {
     if (confirm("Are you sure you want to clear your attempt history?")) {
@@ -363,5 +564,5 @@ clearHistoryBtn.addEventListener("click", () => {
     }
 });
 
-// Initialize App
-checkExistingUser();
+// Initialize
+checkUser();
