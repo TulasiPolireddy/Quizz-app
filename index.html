@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportIQ</title>
+    <title>Sports Arena Pro Quiz</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,18 +15,18 @@
     </div>
 
     <main class="app-container">
-        <!-- 1. LOGIN / WELCOME VIEW -->
+        <!-- 1. LOGIN SCREEN -->
         <section id="login-view" class="view active">
             <div class="card glass">
-                <div class="badge">🏆 SPORTS ARENA</div>
-                <h1>Welcome, Athlete!</h1>
-                <p>Test your knowledge in Cricket, Football, F1, Tennis, and Badminton.</p>
+                <div class="badge">🏆 SPORTS ARENA PRO</div>
+                <h1>Player Login</h1>
+                <p>Test your knowledge in Cricket, Football, F1, Tennis & Badminton under pressure!</p>
                 <form id="login-form">
                     <div class="input-group">
-                        <label for="username">Enter Player Name</label>
-                        <input type="text" id="username" placeholder="e.g. Cristiano, Virat..." required autocomplete="off">
+                        <label for="username">Player Handle / Name</label>
+                        <input type="text" id="username" placeholder="e.g. Lewis, Serena, Messi..." required autocomplete="off">
                     </div>
-                    <button type="submit" class="btn btn-primary">Enter Arena &rarr;</button>
+                    <button type="submit" class="btn btn-primary">Enter the Arena &rarr;</button>
                 </form>
             </div>
         </section>
@@ -37,16 +36,17 @@
             <div class="card glass">
                 <header class="dashboard-header">
                     <div>
-                        <h2>Hello, <span id="player-display-name">Player</span>! 👋</h2>
-                        <p>Pick a category to begin your challenge</p>
+                        <h2>Ready, <span id="player-display-name">Player</span>! 🔥</h2>
+                        <p>Configure your challenge settings below:</p>
                     </div>
                     <button id="logout-btn" class="btn btn-secondary btn-sm">Switch User</button>
                 </header>
 
-                <div class="category-selection">
-                    <label>Select Category:</label>
+                <!-- Category Selection -->
+                <div class="setting-group">
+                    <label class="section-label">1. Choose Sport Category</label>
                     <div class="category-grid">
-                        <button class="cat-btn active" data-category="all">🌐 All Sports (Mixed)</button>
+                        <button class="cat-btn active" data-category="all">🌐 All Sports</button>
                         <button class="cat-btn" data-category="Cricket">🏏 Cricket</button>
                         <button class="cat-btn" data-category="Football">⚽ Football</button>
                         <button class="cat-btn" data-category="F1">🏎️ Formula 1</button>
@@ -55,23 +55,59 @@
                     </div>
                 </div>
 
+                <!-- Difficulty Selection -->
+                <div class="setting-group">
+                    <label class="section-label">2. Select Difficulty & Timer Mode</label>
+                    <div class="difficulty-grid">
+                        <button class="diff-btn active" data-diff="all" data-time="15">
+                            <span class="diff-title">⚡ All Modes</span>
+                            <span class="diff-meta">15s / Question</span>
+                        </button>
+                        <button class="diff-btn" data-diff="Easy" data-time="20">
+                            <span class="diff-title">🟢 Rookie (Easy)</span>
+                            <span class="diff-meta">20s • Base pts</span>
+                        </button>
+                        <button class="diff-btn" data-diff="Medium" data-time="12">
+                            <span class="diff-title">🟡 Pro (Medium)</span>
+                            <span class="diff-meta">12s • 1.5x pts</span>
+                        </button>
+                        <button class="diff-btn" data-diff="Hard" data-time="8">
+                            <span class="diff-title">🔴 Legend (Hard)</span>
+                            <span class="diff-meta">8s • 2x pts</span>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="action-buttons">
-                    <button id="start-quiz-btn" class="btn btn-primary">Start Quiz 🚀</button>
-                    <button id="view-history-btn" class="btn btn-outline">📜 View History</button>
+                    <button id="start-quiz-btn" class="btn btn-primary">Start Timed Challenge 🚀</button>
+                    <div class="dual-buttons">
+                        <button id="view-leaderboard-btn" class="btn btn-secondary">🏆 Leaderboard</button>
+                        <button id="view-history-btn" class="btn btn-outline">📜 My History</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. QUIZ VIEW -->
+        <!-- 3. TIMED QUIZ VIEW -->
         <section id="quiz-view" class="view">
             <div class="card glass">
-                <div class="quiz-header">
-                    <span id="quiz-category-tag" class="badge">Category</span>
-                    <span id="quiz-progress-text" class="progress-text">Question 1/10</span>
+                <div class="quiz-top-bar">
+                    <div class="quiz-meta-tags">
+                        <span id="quiz-category-tag" class="badge">Category</span>
+                        <span id="quiz-difficulty-tag" class="badge badge-diff">Difficulty</span>
+                    </div>
+                    <div class="timer-pill" id="timer-pill">
+                        ⏱️ <span id="timer-display">15</span>s
+                    </div>
                 </div>
-                
+
                 <div class="progress-bar-container">
                     <div id="progress-bar" class="progress-bar"></div>
+                </div>
+
+                <div class="quiz-info-row">
+                    <span id="quiz-progress-text">Question 1 of 10</span>
+                    <span id="quiz-score-indicator">Points: 0</span>
                 </div>
 
                 <div class="quiz-body">
@@ -87,58 +123,103 @@
             </div>
         </section>
 
-        <!-- 4. RESULT VIEW -->
+        <!-- 4. RESULT & ANSWER REVIEW VIEW -->
         <section id="result-view" class="view">
-            <div class="card glass text-center">
-                <div id="result-badge" class="result-icon">🎉</div>
-                <h2>Quiz Completed!</h2>
-                <p id="result-message">Great effort on the pitch!</p>
+            <div class="card glass">
+                <div class="text-center">
+                    <div id="result-badge" class="result-icon">🎉</div>
+                    <h2>Match Finished!</h2>
+                    <p id="result-message">Great effort on the pitch!</p>
 
-                <div class="score-card">
-                    <div class="score-item">
-                        <span class="label">Score</span>
-                        <span id="final-score" class="value">0/0</span>
+                    <div class="score-card">
+                        <div class="score-item">
+                            <span class="label">Correct</span>
+                            <span id="final-score" class="value">0/0</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">Accuracy</span>
+                            <span id="final-percentage" class="value">0%</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">Total Points</span>
+                            <span id="final-points" class="value">0</span>
+                        </div>
                     </div>
-                    <div class="score-item">
-                        <span class="label">Accuracy</span>
-                        <span id="final-percentage" class="value">0%</span>
+                </div>
+
+                <!-- Answer Review Section -->
+                <div class="review-section">
+                    <h3>📋 Detailed Answer Breakdown</h3>
+                    <div id="review-list" class="review-list">
+                        <!-- Breakdown cards injected dynamically -->
                     </div>
                 </div>
 
                 <div class="action-buttons">
-                    <button id="retake-btn" class="btn btn-primary">🔁 Retake Quiz</button>
-                    <button id="dashboard-btn" class="btn btn-secondary">🏠 Back to Dashboard</button>
+                    <button id="retake-btn" class="btn btn-primary">🔁 Retake Challenge</button>
+                    <div class="dual-buttons">
+                        <button id="res-leaderboard-btn" class="btn btn-secondary">🏆 Leaderboard</button>
+                        <button id="dashboard-btn" class="btn btn-outline">🏠 Dashboard</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. HISTORY MODAL / VIEW -->
-        <section id="history-view" class="view">
+        <!-- 5. LEADERBOARD & HISTORY VIEW (TABBED) -->
+        <section id="stats-view" class="view">
             <div class="card glass">
-                <div class="history-header">
-                    <h2>Attempt History</h2>
-                    <button id="close-history-btn" class="btn btn-secondary btn-sm">&times; Close</button>
-                </div>
-                
-                <div class="history-list-wrapper">
-                    <table class="history-table">
-                        <thead>
-                            <tr>
-                                <th>Date & Time</th>
-                                <th>Category</th>
-                                <th>Score</th>
-                                <th>Result</th>
-                            </tr>
-                        </thead>
-                        <tbody id="history-table-body">
-                            <!-- Injected dynamically -->
-                        </tbody>
-                    </table>
-                    <div id="no-history-msg" class="empty-state">No attempts yet. Play a game to record your score!</div>
+                <div class="stats-header">
+                    <div class="tabs-nav">
+                        <button id="tab-leaderboard-btn" class="tab-btn active">🏆 Global Leaderboard</button>
+                        <button id="tab-history-btn" class="tab-btn">📜 My Past Attempts</button>
+                    </div>
+                    <button id="close-stats-btn" class="btn btn-secondary btn-sm">&times; Close</button>
                 </div>
 
-                <div class="history-footer">
-                    <button id="clear-history-btn" class="btn btn-outline btn-danger btn-sm">Clear History</button>
+                <!-- Leaderboard Tab Content -->
+                <div id="leaderboard-tab" class="tab-content active">
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th>Sport</th>
+                                    <th>Mode</th>
+                                    <th>Score</th>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-body">
+                                <!-- Dynamic Leaderboard Rows -->
+                            </tbody>
+                        </table>
+                        <div id="no-leaderboard-msg" class="empty-state">No leaderboard entries yet. Be the first champion!</div>
+                    </div>
+                </div>
+
+                <!-- History Tab Content -->
+                <div id="history-tab" class="tab-content">
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Sport</th>
+                                    <th>Mode</th>
+                                    <th>Accuracy</th>
+                                    <th>Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-body">
+                                <!-- Dynamic History Rows -->
+                            </tbody>
+                        </table>
+                        <div id="no-history-msg" class="empty-state">No games played yet. Play a match to log your score!</div>
+                    </div>
+                    <div class="stats-footer">
+                        <button id="clear-history-btn" class="btn btn-outline btn-danger btn-sm">Clear My History</button>
+                    </div>
                 </div>
             </div>
         </section>
